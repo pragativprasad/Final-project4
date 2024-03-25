@@ -1,0 +1,50 @@
+---
+title: "Upper central incisor Flurosis in US"
+author: "Natnael Kassahun"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r, read-config, include=FALSE}
+config_list<- config::get()
+```
+
+```{r,set-chunk-opts,echo = FALSE,eval = config_list$production}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+```{r, load-data}
+here::i_am("Final_project.Rmd")
+data<- readRDS(
+  file= here::here("output/merged_data.rds")
+  )
+```
+
+# Introduction
+
+National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The data are extracted from representative samples of around 5000 people each year located at different counties across the nation.This data set is the 2013-2014 data which is composed of information gathered through interviews (demographic, socioeconomic, dietary and Health related questions) and physical examinations (medical, dental physiologic measurements, and laboratory tests) of the study participants.
+The analysis objective of this document focuses on dental physiologic measurment data and demographic data and tries to analyse the level of upper molar incisor teeth flurosis in the usstratified by age and gender.
+
+# Descriptive statistics
+
+## Table
+Below is a descriptive talble of the `r nrow( data)` patient's in the age range of `r range(data$Age)` on levels of upper central incisor flurosis stratified by age (mean= `r mean(data$Age)`) and gender from the NAHNES database are displayed in the table below.
+
+```{r, table1}
+Table_descriptive<- readRDS(file= here::here("output/Table1.rds"))
+Table_descriptive
+```
+
+## FIGURE
+
+Below is a report of box plot illustration of levels of upper molar incisor flurosis among male and female distibuted by age  
+```{r, plot-data}
+#| fig.align = "center",
+#| out.width = "600px"
+knitr::include_graphics(
+  here::here("output/boxplot.png")
+  )
+```
