@@ -1,0 +1,4 @@
+default:
+  production: TRUE
+test:
+  production: FALSE
